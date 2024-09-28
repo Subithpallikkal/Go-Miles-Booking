@@ -1,0 +1,80 @@
+@tailwind components;
+@tailwind base;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'AnekTelugu';
+  src: url('./assets/fonts/AnekTelugu-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AnekTeluguBold';
+  src: url('./assets/fonts/AnekTelugu-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AnekTeluguExtraBold';
+  src: url('./assets/fonts/AnekTelugu-ExtraBold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AnekTeluguSemiExpanded';
+  src: url('./assets/fonts/AnekTelugu_SemiExpanded-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AnekTeluguSemiExpandedBold';
+  src: url('./assets/fonts/AnekTelugu_SemiExpanded-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AnekTeluguSemiExpandedExtraBold';
+  src: url('./assets/fonts/AnekTelugu_SemiExpanded-ExtraBold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AnekTeluguCondensed';
+  src: url('./assets/fonts/AnekTelugu_Condensed-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AnekTeluguCondensedBold';
+  src: url('./assets/fonts/AnekTelugu_Condensed-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AnekTeluguCondensedExtraBold';
+  src: url('./assets/fonts/AnekTelugu_Condensed-ExtraBold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  @apply font-anekTelugu
+}
+
+.underline-input::after {
+  content: "";
+  width: 100%;
+  height: .05em;
+  background: black;
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+}
