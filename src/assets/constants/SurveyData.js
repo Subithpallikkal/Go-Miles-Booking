@@ -12,10 +12,9 @@ const questions = [
       "https://images.unsplash.com/photo-1466442929976-97f336a657be?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
-    title: `Hi _____,
-    Thanks for reaching The Road Tales.
-    No matter what excites you in Turkey, be it wandering historic streets, exploring bustling markets, indulging in delicious local cuisine, or simply relaxing on stunning beaches, The Road Tales can help make your perfect Turkish trip a reality.
-    Lets get started!`,
+    title: `Hi,
+
+Thank you for reaching out to Gomiles International! Whether you're dreaming of breathtaking landscapes, immersing yourself in vibrant cultures, or embarking on unforgettable adventures, we are here to help you create your ideal travel experience. From the tranquil beaches to the majestic mountains, and the rich historical sites to the bustling cities, we have the perfect solutions to meet your travel desires. Let's begin planning your next journey together!`,
     buttonText: "Start",
   },
   {
@@ -51,12 +50,12 @@ const questions = [
       {
         image:
           "https://plus.unsplash.com/premium_photo-1674539250113-156c53fef54b?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        option: "Solo",
+        option: "Myself",
       },
       {
         image:
           "https://images.unsplash.com/photo-1623557415599-b1c648cedc07?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        option: "Couple",
+        option: "Partner",
       },
       {
         image:
@@ -190,7 +189,7 @@ const questions = [
     buttonText: "OK",
   },
   {
-    name: "accomodation",
+    name: "starRating",
     title: "What type of accomodation would you prefer?",
     selectOnlyOne: true,
     options: [{ option: "5 Star" }, { option: "4 Star" }, { option: "3 Star" }],

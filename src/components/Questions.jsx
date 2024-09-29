@@ -5,6 +5,7 @@ import DateInput from "./DateInput"
 import InputField from "./InputField"
 import Options from "./Options"
 import { useUserData } from "../context/userDataContext"
+import AdminPhone from "../assets/constants/AdminPhone"
 
 const Questions = ({
   question: {
@@ -30,6 +31,8 @@ const Questions = ({
 
   const submitHandler = () => {
     if (isSubmit) {
+      console.log("user data", userData)
+
       const emptyFields = [] // Array to track fields that are empty or invalid
       Object.entries(userData).forEach(([key, value]) => {
         if (!value) {
@@ -39,11 +42,45 @@ const Questions = ({
 
       if (emptyFields.length > 0) {
         setError(true) // Set error state to true if there are empty fields
-        setErrorFields(emptyFields) // Update the errorFields state with the list of empty fields
+        return setErrorFields(emptyFields) // Update the errorFields state with the list of empty fields
       } else {
         setError(false) // No errors, proceed with the form submission
-        console.log("Final user data:", userData)
       }
+      const messageData = `Hello! I hope this message finds you well. My name is  ${
+        userData.name
+      }, and I am reaching out to share my travel plans. I will be embarking on a trip from  ${
+        userData.from
+      },expecting to start on  ${userData.date} and lasting for  ${
+        userData.dayCount
+      } days. I will be traveling with  ${
+        userData.companion
+      }, and our group consists of  ${
+        userData.teamCount
+      } individuals. We are interested in a  ${
+        userData.tourType
+      } tour and would like to know if a guide will be necessary for our journey. Our planned destinations include ${
+        userData.wishlist
+      }, and we are seeking a  ${userData.luxuryTier} experience with a  ${
+        userData.starRating
+      } rating. One of our primary focuses for this trip is  ${
+        userData.importance
+      }, as we consider this very important. Additionally. ${
+        userData.message
+          ? "I also want to share the message:" + userData.message
+          : null
+      } . You can reach me via email at ${
+        userData.email
+      } and my contact number is ${
+        userData.number
+      }. I discovered your services through ${
+        userData.reference
+      } and would greatly appreciate your assistance with our travel arrangements.`
+
+      // Encode the message to make it URL-friendly
+      const encodedMessage = encodeURIComponent(messageData)
+
+      const url = `https://wa.me/${AdminPhone}?text=${encodedMessage}`
+      window.open(url)
 
       return
     }
@@ -80,7 +117,7 @@ const Questions = ({
       }
     })
 
-    console.log(userData)
+    console.log("user data from select", userData)
 
     // Update userData context
     setUserData((prevData) => ({
@@ -100,9 +137,7 @@ const Questions = ({
           image ? "items-start" : "justify-center"
         } flex-col`}
       >
-        <h1 className="font-anekTel md:text-2xl text-xl text-theme">
-          {title.toUpperCase()}
-        </h1>
+        <h1 className="font-anekTel md:text-2xl text-xl text-theme">{title}</h1>
 
         {logo && (
           <div className="my-5 h-44 w-44 flex justify-center items-center">
