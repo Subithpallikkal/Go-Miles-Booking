@@ -7,10 +7,26 @@ import colorLogo from "./assets/logos/logo-name-color.png"
 import { motion, useAnimation } from "framer-motion"
 
 function App() {
+  const formData = {
+    name: "",
+    planningDate: "",
+    planingDayCount: 0,
+    joiners: "",
+    joinersCount: 0,
+    tourType: "",
+    needGuide: false,
+    destinations: [],
+    tier: "",
+    starRating: "",
+    important: "",
+    additionalNote: "",
+  }
+
   const [surveyStarted, setSurveyStarted] = useState(false)
   const [page, setPage] = useState(0)
   const [isThrottled, setIsThrottled] = useState(false) // Throttle control state
   const [scrollEnabled, setScrollEnabled] = useState(true) // Scroll control state
+  const [userData, setUserData] = useState(formData)
 
   // Throttled scroll event
   const handleWheel = useCallback(
@@ -61,20 +77,6 @@ function App() {
   }, [handleWheel])
 
   ////
-  const formData = {
-    name: "",
-    planningDate: "",
-    planingDayCount: 0,
-    joiners: "",
-    joinersCount: 0,
-    tourType: "",
-    needGuide: false,
-    destinations: [],
-    tier: "",
-    starRating: "",
-    important: "",
-    additionalNote: "",
-  }
 
   return (
     <div className="w-screen flex h-dvh max-lg:flex-col max-lg:h-screen">
@@ -108,7 +110,11 @@ function App() {
         }max-h-screen w-full justify-start   flex items-center max-md:h-[100%] max-lg:p-7  max-lg:py-10  px-10`}
       >
         {surveyStarted ? (
-          <Questions question={SurveyData[page]} page={page} />
+          <Questions
+            question={SurveyData[page]}
+            page={page}
+            setPage={setPage}
+          />
         ) : (
           <HeroStart
             surveyStarted={surveyStarted}

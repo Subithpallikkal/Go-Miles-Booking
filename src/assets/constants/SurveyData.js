@@ -4,6 +4,7 @@ import mapLogo from "../vectors/Map-light.jpg"
 
 const questions = [
   {
+    name: "name",
     title: "What's your first name ?",
     isInput: true,
     buttonText: "OK",
@@ -23,6 +24,7 @@ const questions = [
     logo: calendar,
   },
   {
+    name: "date",
     title: `When do you plan on traveling to Turkey?`,
     isDate: true,
     buttonText: "OK",
@@ -30,6 +32,7 @@ const questions = [
       "https://images.unsplash.com/photo-1505783638529-f3fdc62e1bb1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
+    name: "dayCount",
     title: `How many days are you planning for your trip?`,
     isInput: true,
     buttonText: "OK",
@@ -42,13 +45,9 @@ const questions = [
     buttonText: "Continue",
   },
   {
+    name: "companion",
     title: `Who will be joining with you in this trip ?`,
     options: [
-      {
-        image:
-          "https://plus.unsplash.com/premium_photo-1674539250113-156c53fef54b?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        option: "Solo",
-      },
       {
         image:
           "https://plus.unsplash.com/premium_photo-1674539250113-156c53fef54b?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -76,6 +75,7 @@ const questions = [
     buttonText: "OK",
   },
   {
+    name: "teamCount",
     title: `If you are not alone, how many people are in your group?`,
     image:
       "https://images.unsplash.com/photo-1518414922567-9da8c8461366?q=80&w=1856&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -83,16 +83,17 @@ const questions = [
     buttonText: "OK",
   },
   {
+    name: "tourType",
     title: `Would you prefer a private or group tour?`,
     options: [
       {
         image:
-          "https://images.unsplash.com/photo-1518414922567-9da8c8461366?q=80&w=1856&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        option: '"Group tour"',
+          "https://images.unsplash.com/photo-1520069853334-85e555651e6f?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        option: "Group tour",
       },
       {
         image:
-          "https://images.unsplash.com/photo-1518414922567-9da8c8461366?q=80&w=1856&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         option: "Private tour",
       },
     ],
@@ -102,10 +103,11 @@ const questions = [
     buttonText: "OK",
   },
   {
+    name: "guide",
     title: "Would you like to have a guide for your tour ?",
     options: [{ option: "Yes" }, { option: "No" }],
     image:
-      "https://plus.unsplash.com/premium_photo-1718146019640-445ef39ef25a?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1505778276668-26b3ff7af103?q=80&w=2061&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     selectOnlyOne: true,
     buttonText: "OK",
   },
@@ -115,6 +117,7 @@ const questions = [
     buttonText: "CONTINUE",
   },
   {
+    name: "wishlist",
     title: `Which are the places you would like to visit?`,
     selectOnlyOne: false,
     image:
@@ -127,53 +130,54 @@ const questions = [
       },
       {
         image:
-          "https://images.unsplash.com/photo-1518414922567-9da8c8461366?q=80&w=1856&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "https://images.unsplash.com/photo-1716245290832-9856ba0485e4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         option: "Cappadocia",
       },
       {
         image:
-          "https://images.unsplash.com/photo-1518414922567-9da8c8461366?q=80&w=1856&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "https://images.unsplash.com/photo-1664376205509-9a183789ef6c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         option: "Fethiye",
       },
       {
         image:
-          "https://images.unsplash.com/photo-1518414922567-9da8c8461366?q=80&w=1856&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "https://images.unsplash.com/photo-1711712667984-5b9b291272c0?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         option: "Antalya",
       },
       {
         image:
-          "https://images.unsplash.com/photo-1518414922567-9da8c8461366?q=80&w=1856&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "https://plus.unsplash.com/premium_photo-1661936697264-84cc3925cf5c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         option: "Pamukkale",
       },
       {
         image:
-          "https://images.unsplash.com/photo-1518414922567-9da8c8461366?q=80&w=1856&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "https://images.unsplash.com/photo-1526146938025-8cf2d310a92a?q=80&w=1983&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         option: "Bursa",
       },
       {
         image:
-          "https://images.unsplash.com/photo-1518414922567-9da8c8461366?q=80&w=1856&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "https://images.unsplash.com/photo-1716662305562-7ed0e5deb323?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         option: "Konya",
       },
       {
         image:
-          "https://images.unsplash.com/photo-1518414922567-9da8c8461366?q=80&w=1856&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "https://images.unsplash.com/photo-1655447083546-0d7146b03c10?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         option: "Sapanca",
       },
       {
         image:
-          "https://images.unsplash.com/photo-1518414922567-9da8c8461366?q=80&w=1856&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "https://images.unsplash.com/photo-1605793987467-9cc4171f8287?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         option: "Trabzon",
       },
       {
         image:
-          "https://images.unsplash.com/photo-1518414922567-9da8c8461366?q=80&w=1856&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "https://images.unsplash.com/photo-1627551730848-4e77d698244c?q=80&w=1884&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         option: "Rize",
       },
     ],
     buttonText: "OK",
   },
   {
+    name: "luxuryTier",
     title: "At what level would you like to experience Turkey?",
     options: [
       { option: "Luxury" },
@@ -186,7 +190,8 @@ const questions = [
     buttonText: "OK",
   },
   {
-    title: "What type of accomodatin would you prefer?",
+    name: "accomodation",
+    title: "What type of accomodation would you prefer?",
     selectOnlyOne: true,
     options: [{ option: "5 Star" }, { option: "4 Star" }, { option: "3 Star" }],
     image:
@@ -194,6 +199,7 @@ const questions = [
     buttonText: "OK",
   },
   {
+    name: "importance",
     title: "What is most important for you in this trip?",
     selectOnlyOne: true,
     options: [
@@ -208,6 +214,7 @@ const questions = [
     buttonText: "OK",
   },
   {
+    name: "message",
     title: "Do you have any special requests or notes for us?",
     image:
       "https://images.unsplash.com/photo-1471107340929-a87cd0f5b5f3?q=80&w=1973&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -215,6 +222,7 @@ const questions = [
     buttonText: "OK",
   },
   {
+    name: "email",
     title: "What's your email address ?",
     image:
       "https://images.unsplash.com/photo-1633360821222-7e8df83639fb?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -223,6 +231,7 @@ const questions = [
     buttonText: "OK",
   },
   {
+    name: "number",
     title: "Please share your contact number",
     image:
       "https://images.unsplash.com/photo-1633360821222-7e8df83639fb?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -231,6 +240,7 @@ const questions = [
     buttonText: "OK",
   },
   {
+    name: "from",
     title: "Where are you travelling from ?",
     image:
       "https://images.unsplash.com/photo-1478860409698-8707f313ee8b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -239,6 +249,7 @@ const questions = [
     buttonText: "OK",
   },
   {
+    name: "city",
     title: "Which city are you from ?",
     image:
       "https://images.unsplash.com/photo-1566935843973-aed0ddcb0ecc?q=80&w=2029&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -246,9 +257,10 @@ const questions = [
     buttonText: "OK",
   },
   {
+    name: "reference",
     title: "How did you know go miles ?",
     image:
-      "https://images.unsplash.com/photo-1566935843973-aed0ddcb0ecc?q=80&w=2029&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1639322537231-2f206e06af84?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     options: [
       { image: "", option: "Social Media" },
       { image: "", option: "Website" },

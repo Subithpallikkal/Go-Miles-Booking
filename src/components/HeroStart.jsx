@@ -3,8 +3,6 @@ import clockIcon from "../assets/icons/icons8-clock-48.png"
 import { motion } from "framer-motion"
 
 const HeroStart = ({ surveyStarted, setSurveyStarted }) => {
-  console.log("here rendered")
-
   return (
     <motion.div
       initial={{ x: 30, opacity: 0 }}
@@ -17,7 +15,7 @@ const HeroStart = ({ surveyStarted, setSurveyStarted }) => {
           Turkey Trip Planner
         </h1>
         <h1 className="font-anekTelugu md:text-4xl text-3xl text-theme">
-          The Road Tales
+          Go miles
         </h1>
       </div>
       <p className="font-anekTelu md:text-xl md:my-5 my-3 opacity-60 text-theme">
@@ -32,13 +30,13 @@ const HeroStart = ({ surveyStarted, setSurveyStarted }) => {
           Start
         </button>
         <div className="mt-3 h-fit flex justify-center items-center w-fit gap-2 max-sm:justify-center max-sm:w-full">
-          <img
+          {/* <img
             width="20"
             height="20"
             color="theme"
             src={clockIcon}
             alt="clock--v2"
-          />
+          /> */}
           <p className="text-theme pt-1">Takes 3 minutes</p>
         </div>
       </div>

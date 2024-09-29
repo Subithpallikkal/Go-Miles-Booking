@@ -1,4 +1,26 @@
-const DateInput = () => {
+import React, { useState, useEffect } from "react"
+import { useUserData } from "../context/userDataContext"
+
+const DateInput = ({ question }) => {
+  const { userData, setUserData } = useUserData() // Access context state
+  const [day, setDay] = useState("")
+  const [month, setMonth] = useState("")
+  const [year, setYear] = useState("")
+
+  // Effect to concatenate day, month, and year into a single date string
+  useEffect(() => {
+    if (day && month && year) {
+      const formattedDate = `${day.padStart(2, "0")}/${month.padStart(
+        2,
+        "0"
+      )}/${year}`
+      setUserData((prevData) => ({
+        ...prevData,
+        [question.name]: formattedDate, // Store the concatenated date in the userData state
+      }))
+    }
+  }, [day, month, year, question.name, setUserData])
+
   return (
     <div className="flex items-center justify-between space-x-2 my-10">
       {/* Day Input */}
@@ -8,6 +30,8 @@ const DateInput = () => {
           type="number"
           max="31"
           placeholder="DD"
+          value={day}
+          onChange={(e) => setDay(e.target.value)}
           className="border-b text-lg border-gray-400 w-12 text-center text-gray-400 focus:outline-none"
         />
       </div>
@@ -21,6 +45,8 @@ const DateInput = () => {
           type="number"
           max="12"
           placeholder="MM"
+          value={month}
+          onChange={(e) => setMonth(e.target.value)}
           className="border-b text-lg border-gray-400 w-12 text-center text-gray-400 focus:outline-none"
         />
       </div>
@@ -35,6 +61,8 @@ const DateInput = () => {
           max="9999"
           min="2024"
           placeholder="YYYY"
+          value={year}
+          onChange={(e) => setYear(e.target.value)}
           className="border-b text-lg border-gray-400 w-16 text-center text-gray-400 focus:outline-none"
         />
       </div>
