@@ -1,3 +1,3 @@
-const Mobile = "+919496942964"
+const Mobile = "+91********"
 
 export default Mobile
