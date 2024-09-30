@@ -16,7 +16,7 @@ export const UserDataProvider = ({ children }) => {
     teamCount: "",
     tourType: "",
     guide: "",
-    wishlist: [],
+    wishlist: "",
     luxuryTier: "",
     starRating: "",
     importance: "",

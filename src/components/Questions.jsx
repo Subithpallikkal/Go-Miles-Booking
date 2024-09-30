@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react"
 import clockIcon from "../assets/icons/icons8-clock-48.png"
-import { motion, useAnimation } from "framer-motion"
+import { motion, resolveMotionValue, useAnimation } from "framer-motion"
 import DateInput from "./DateInput"
 import InputField from "./InputField"
 import Options from "./Options"
 import { useUserData } from "../context/userDataContext"
 import AdminPhone from "../assets/constants/AdminPhone"
+import axios from "axios"
+import spreadSheetId from "../assets/constants/spreadSheetid"
 
 const Questions = ({
   question: {
@@ -29,10 +31,8 @@ const Questions = ({
   const controls = useAnimation()
   const [selectedOptions, setSelectedOptions] = useState({}) // Local state to track selected options
 
-  const submitHandler = () => {
+  const submitHandler = async () => {
     if (isSubmit) {
-      console.log("user data", userData)
-
       const emptyFields = [] // Array to track fields that are empty or invalid
       Object.entries(userData).forEach(([key, value]) => {
         if (!value) {
@@ -40,48 +40,43 @@ const Questions = ({
         }
       })
 
+      console.log(userData)
       if (emptyFields.length > 0) {
         setError(true) // Set error state to true if there are empty fields
         return setErrorFields(emptyFields) // Update the errorFields state with the list of empty fields
       } else {
         setError(false) // No errors, proceed with the form submission
       }
-      const messageData = `Hello! I hope this message finds you well. My name is  ${
-        userData.name
-      }, and I am reaching out to share my travel plans. I will be embarking on a trip from  ${
-        userData.from
-      },expecting to start on  ${userData.date} and lasting for  ${
-        userData.dayCount
-      } days. I will be traveling with  ${
-        userData.companion
-      }, and our group consists of  ${
-        userData.teamCount
-      } individuals. We are interested in a  ${
-        userData.tourType
-      } tour and would like to know if a guide will be necessary for our journey. Our planned destinations include ${
-        userData.wishlist
-      }, and we are seeking a  ${userData.luxuryTier} experience with a  ${
-        userData.starRating
-      } rating. One of our primary focuses for this trip is  ${
-        userData.importance
-      }, as we consider this very important. Additionally. ${
-        userData.message
-          ? "I also want to share the message:" + userData.message
-          : null
-      } . You can reach me via email at ${
-        userData.email
-      } and my contact number is ${
-        userData.number
-      }. I discovered your services through ${
-        userData.reference
-      } and would greatly appreciate your assistance with our travel arrangements.`
 
-      // Encode the message to make it URL-friendly
-      const encodedMessage = encodeURIComponent(messageData)
-
-      const url = `https://wa.me/${AdminPhone}?text=${encodedMessage}`
-      window.open(url)
-
+      const formData = new FormData()
+      for (const key in userData) {
+        formData.append(key, userData[key])
+      }
+      formData.append("enquiryDate", new Date().toLocaleDateString("en-GB"))
+      const result = await axios.post(spreadSheetId, formData)
+      if (result.data?.success) {
+        alert("form submitted succesfully")
+        setPage(0)
+        setUserData({
+          name: "",
+          date: "",
+          dayCount: "",
+          companion: "",
+          teamCount: "",
+          tourType: "",
+          guide: "",
+          wishlist: "",
+          luxuryTier: "",
+          starRating: "",
+          importance: "",
+          message: "",
+          email: "",
+          number: "",
+          from: "",
+          city: "",
+          reference: "",
+        })
+      }
       return
     }
     setPage(page + 1)
@@ -116,8 +111,6 @@ const Questions = ({
         return { ...prev, [name]: value } // New entry
       }
     })
-
-    console.log("user data from select", userData)
 
     // Update userData context
     setUserData((prevData) => ({
