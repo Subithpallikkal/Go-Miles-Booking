@@ -130,7 +130,9 @@ const Questions = ({
           image ? "items-start" : "justify-center"
         } flex-col`}
       >
-        <h1 className="font-anekTel md:text-2xl text-xl text-theme">{title}</h1>
+        <h1 className="font-carmenBold md:text-2xl text-xl text-theme">
+          {title}
+        </h1>
 
         {logo && (
           <div className="my-5 h-44 w-44 flex justify-center items-center">
@@ -163,7 +165,7 @@ const Questions = ({
         <button
           tabIndex={1}
           onClick={submitHandler}
-          className="bg-orange w-fit py-3 px-7 rounded-md text-white text-xl font-extrabold align-middle max-sm:w-full"
+          className="bg-orange w-fit py-3 px-7 rounded-full text-white text-xl font-extrabold align-middle max-sm:w-full"
         >
           {buttonText}
         </button>

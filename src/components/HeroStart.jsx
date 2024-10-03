@@ -11,21 +11,22 @@ const HeroStart = ({ surveyStarted, setSurveyStarted }) => {
       className="flex flex-col  max-md:h-full "
     >
       <div className="">
-        <h1 className="font-AnekTeluguExtraBold font-extrabold md:text-4xl text-3xl text-theme ">
-          Turkey Trip Planner
+        <h1 className="font-carmenBold font-extrabold md:text-5xl mb-3 text-4xl text-theme ">
+          Discover the Magic of Turkey
         </h1>
         <h1 className="font-anekTelugu md:text-4xl text-3xl text-theme">
-          Go miles
+          Go Miles - Your Travel Companion
         </h1>
       </div>
       <p className="font-anekTelu md:text-xl md:my-5 my-3 opacity-60 text-theme">
-        Share us your travel preferences and interests to create a personalized
-        itinerary for your unforgettable trip to Turkey.
+        Embark on an extraordinary journey with a tailor-made itinerary,
+        designed to immerse you in Turkey's timeless allure, vibrant culture,
+        and hidden gems.
       </p>
       <div className="flex flex-col max-md:mt-auto max-md:flex-col-reverse">
         <button
           onClick={() => setSurveyStarted(true)}
-          className="bg-theme w-fit py-3 px-7 rounded-md text-white text-xl font-extrabold align-middle max-sm:w-full"
+          className="bg-theme w-fit py-3 px-7 rounded-full text-white text-xl font-extrabold align-middle max-sm:w-full"
         >
           Start
         </button>

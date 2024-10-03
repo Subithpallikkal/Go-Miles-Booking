@@ -2,7 +2,7 @@
 @tailwind base;
 @tailwind utilities;
 
-@font-face {
+/* @font-face {
   font-family: 'AnekTelugu';
   src: url('./assets/fonts/AnekTelugu-Regular.ttf') format('truetype');
   font-weight: normal;
@@ -63,10 +63,32 @@
   src: url('./assets/fonts/AnekTelugu_Condensed-ExtraBold.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
+} */
+
+@font-face {
+  font-family: 'Carmen';
+  src: url('./assets/fonts/carmen-regular.OTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
+@font-face {
+  font-family: 'Carmen-bold';
+  src: url('./assets/fonts/carmen-bold.OTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Carmen-light';
+  src: url('./assets/fonts/carmen-light.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 body {
-  @apply font-anekTelugu
+  @apply font-carmen
 }
 
 .underline-input::after {

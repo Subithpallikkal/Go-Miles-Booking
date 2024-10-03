@@ -21,21 +21,9 @@ export default {
     },
 
     fontFamily: {
-      anekTelugu: ["AnekTelugu", "sans-serif"], // Regular
-      AnekTeluguBold: ["AnekTeluguBold", "sans-serif"],
-      AnekTeluguExtraBold: ["AnekTeluguExtraBold", "sans-serif"],
-      anekTeluguSemiExpanded: ["AnekTeluguSemiExpanded", "sans-serif"], // SemiExpanded
-      AnekTeluguSemiExpandedBold: ["AnekTeluguSemiExpandedBold", "sans-serif"],
-      AnekTeluguSemiExpandedExtraBold: [
-        "AnekTeluguSemiExpandedExtraBold",
-        "sans-serif",
-      ],
-      anekTeluguCondensed: ["AnekTeluguCondensed", "sans-serif"],
-      AnekTeluguCondensedBold: ["AnekTeluguCondensedBold", "sans-serif"],
-      AnekTeluguCondensedExtraBold: [
-        "AnekTeluguCondensedExtraBold",
-        "sans-serif",
-      ],
+      carmen: ["Carmen", "sans-serif"],
+      carmenBold: ["Carmen-bold", "sans-serif"],
+      carmenLight: ["Carmen-light", "sans-serif"],
     },
   },
   plugins: [],
