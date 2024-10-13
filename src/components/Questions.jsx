@@ -79,40 +79,63 @@ const Questions = ({
 
     // Handle form submission
     if (isSubmit) {
-        const formData = new FormData();
-        for (const key in userData) {
-            formData.append(key, userData[key]);
-        }
-        formData.append("enquiryDate", new Date().toLocaleDateString("en-GB"));
-        const result = await axios.post(spreadSheetId, formData);
-        if (result.data?.success) {
-            alert("Form submitted successfully");
-            setPage(0); // Reset to the first page after submission
-            setUserData({
-                name: "",
-                date: "",
-                dayCount: "",
-                companion: "",
-                teamCount: "",
-                tourType: "",
-                guide: "",
-                wishlist: "",
-                luxuryTier: "",
-                starRating: "",
-                importance: "",
-                message: "",
-                email: "",
-                number: "",
-                from: "",
-                city: "",
-                reference: "",
-            });
-        }
-        return;
-    }
-
-    setPage(page + 1); // Proceed to the next page if there are no errors
-};
+      const formData = new FormData();
+  
+      // Append userData to formData
+      for (const key in userData) {
+          formData.append(key, userData[key]);
+      }
+  
+      // Append additional fields to formData
+      formData.append("enquiryDate", new Date().toLocaleDateString("en-GB"));
+      formData.append("spreadSheetId", "1A2B3C4D5EFGH6IJKL7MNOP8QR9S_TUVWXYZ12345"); // Append spreadsheet ID if necessary
+  
+      try {
+          // Send the formData via Axios (with correct headers)
+          const result = await axios.post(
+              "https://script.google.com/macros/s/AKfycbwka2T21IVRRhUDfIwHsSjwiK1yT_givMMDHlpYHgJZGbB_2HzKCaGHMd8ctnfNSGrX2g/exec",
+              formData,
+              {
+                  headers: {
+                      "Content-Type": "multipart/form-data", // Ensure Axios knows it's FormData
+                  },
+              }
+          );
+  
+          // Check the result and handle success
+          if (result.data?.success) {
+              alert("Form submitted successfully");
+              setPage(0); // Reset to the first page after submission
+              setUserData({
+                  name: "",
+                  date: "",
+                  dayCount: "",
+                  companion: "",
+                  teamCount: "",
+                  tourType: "",
+                  guide: "",
+                  wishlist: "",
+                  luxuryTier: "",
+                  starRating: "",
+                  importance: "",
+                  message: "",
+                  email: "",
+                  number: "",
+                  from: "",
+                  city: "",
+                  reference: "",
+              });
+          }
+      } catch (error) {
+          console.error("Error submitting form: ", error);
+          alert("There was an error submitting the form.");
+      }
+  
+      return;
+  }
+  
+  setPage(page + 1); // Proceed to the next page if there are no errors
+  }  
 
   // Effect to trigger the animation on page change
   useEffect(() => {

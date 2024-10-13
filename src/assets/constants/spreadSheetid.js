@@ -1,4 +1,4 @@
-const spreadSheetId = "https://script.google.com/macros/s/AKfycbzmBuVB3Yq2X_Im7BF5BvQtfZw-ps1lTPMdDFy-8TgJKNaVsu8wDlwH2CV3RbM5bsGXfw/exec"
+const spreadSheetId = "AKfycbwka2T21IVRRhUDfIwHsSjwiK1yT_givMMDHlpYHgJZGbB_2HzKCaGHMd8ctnfNSGrX2g"
 
 //fill your spread sheet id between the "" in the above line
 
