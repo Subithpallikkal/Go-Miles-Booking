@@ -44,7 +44,7 @@ const Options = ({ options, question, selectedOptions, onOptionChange }) => {
               const value = option.option
               onOptionChange(question.name, value) // Call the onOptionChange prop
             }}
-            className={`p-3 border rounded-md flex text-white font-bold bg-theme items-center justify-center h-10 ${
+            className={`p-10 border rounded-md flex text-white font-bold bg-theme items-center justify-center h-10 ${
               isSelected ? "border-2 border-orange" : ""
             }`} // Highlight selected option
           >

@@ -62,17 +62,25 @@ function App() {
     setScrollEnabled(true)
   }
 
+  const handleKeyDown =(event)=>{
+    if(event.key === "Enter"){
+        setSurveyStarted(true)
+    }
+  }
+
   useEffect(() => {
     // Add wheel and mouse event listeners
     window.addEventListener("wheel", handleWheel, { passive: false })
     window.addEventListener("mousedown", handleMouseDown)
     window.addEventListener("mouseup", handleMouseUp)
+    window.addEventListener("keydown",handleKeyDown)
 
     // Cleanup listeners on component unmount
     return () => {
       window.removeEventListener("wheel", handleWheel)
       window.removeEventListener("mousedown", handleMouseDown)
       window.removeEventListener("mouseup", handleMouseUp)
+      window.removeEventListener("keydown",handleKeyDown)
     }
   }, [handleWheel])
 

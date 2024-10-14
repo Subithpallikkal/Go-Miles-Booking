@@ -20,6 +20,7 @@ const Questions = ({
     selectOnlyOne,
     image,
     isSubmit,
+    
   },
   question,
   page,
@@ -129,6 +130,21 @@ const Questions = ({
 
     setPage(page + 1) // Proceed to the next page if there are no errors
   }
+
+  useEffect(()=>{
+    const handleKeyDown =(event)=>{
+      if(event.key === "Enter"){
+        event.preventDefault()
+        submitHandler()
+      }
+    }
+
+    window.addEventListener("keydown",handleKeyDown)
+
+    return(()=>{
+      window.removeEventListener("keydown",handleKeyDown)
+    })
+  },[submitHandler])
 
   // Effect to trigger the animation on page change
   useEffect(() => {
@@ -266,7 +282,9 @@ const Questions = ({
         <button
           tabIndex={1}
           onClick={submitHandler}
-          className="bg-orange w-fit py-3 px-7 rounded-full text-white text-xl font-extrabold align-middle max-sm:w-full"
+          className="bg-orange w-fit py-3 px-7 rounded-full text-white text-xl font-extrabold align-middle max-sm:w-full 
+             hover:bg-red-500 hover:shadow-lg active:bg-red-800 active:shadow-inner 
+             transition-all duration-300 ease-in-out transform active:scale-95"
         >
           {buttonText}
         </button>
