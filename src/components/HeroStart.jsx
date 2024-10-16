@@ -8,6 +8,12 @@ const HeroStart = ({ surveyStarted, setSurveyStarted }) => {
       initial={{ x: 30, opacity: 0 }}
       animate={{ x: 0, opacity: 100 }}
       transition={{ duration: 1 }}
+      tabIndex={0}
+      onKeyDown={(e)=>{
+      if(e.key === "Enter"){
+      setSurveyStarted(true)
+      }
+      }}
       className="flex flex-col  max-md:h-full "
     >
       <div className="">

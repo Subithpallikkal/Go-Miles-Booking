@@ -12,6 +12,8 @@ const questions = [
       "https://images.unsplash.com/photo-1466442929976-97f336a657be?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
+    image:
+      "https://images.unsplash.com/photo-1657713140620-3c4a3a7334c2?q=80&w=2055&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     title: `Hi,
 
 Thank you for reaching out to Gomiles International! Whether you're dreaming of breathtaking landscapes, immersing yourself in vibrant cultures, or embarking on unforgettable adventures, we are here to help you create your ideal travel experience. From the tranquil beaches to the majestic mountains, and the rich historical sites to the bustling cities, we have the perfect solutions to meet your travel desires. Let's begin planning your next journey together!`,
@@ -21,7 +23,8 @@ Thank you for reaching out to Gomiles International! Whether you're dreaming of 
     title: `Journey date and duration`,
     buttonText: "Continue",
     logo: calendar,
-    image:"https://images.unsplash.com/photo-1556471887-b7ecbbdfec88?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image:
+      "https://images.unsplash.com/photo-1556471887-b7ecbbdfec88?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "date",
@@ -43,7 +46,8 @@ Thank you for reaching out to Gomiles International! Whether you're dreaming of 
     title: "Travel companion",
     logo: travelCompanion,
     buttonText: "Continue",
-    image:"https://images.unsplash.com/photo-1539635278303-d4002c07eae3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    image:
+      "https://images.unsplash.com/photo-1539635278303-d4002c07eae3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "companion",
@@ -116,7 +120,8 @@ Thank you for reaching out to Gomiles International! Whether you're dreaming of 
     title: "Places and accomodation",
     logo: mapLogo,
     buttonText: "CONTINUE",
-    image:"https://plus.unsplash.com/premium_photo-1679088033246-8d11df617dbf?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image:
+      "https://plus.unsplash.com/premium_photo-1679088033246-8d11df617dbf?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "wishlist",
@@ -203,7 +208,7 @@ Thank you for reaching out to Gomiles International! Whether you're dreaming of 
   {
     name: "importance",
     title: "What is most important for you in this trip?",
-    selectOnlyOne: true,
+    selectOnlyOne: false,
     options: [
       { image: "", option: "Adventure activities" },
       { image: "", option: "Relaxation and leisure" },

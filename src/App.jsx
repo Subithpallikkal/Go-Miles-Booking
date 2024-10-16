@@ -62,24 +62,32 @@ function App() {
     setScrollEnabled(true)
   }
 
+  const handleKeyDown =(event)=>{
+    if(event.key === "Enter"){
+        setSurveyStarted(true)
+    }
+  }
+
   useEffect(() => {
     // Add wheel and mouse event listeners
     window.addEventListener("wheel", handleWheel, { passive: false })
     window.addEventListener("mousedown", handleMouseDown)
     window.addEventListener("mouseup", handleMouseUp)
+    window.addEventListener("keydown",handleKeyDown)
 
     // Cleanup listeners on component unmount
     return () => {
       window.removeEventListener("wheel", handleWheel)
       window.removeEventListener("mousedown", handleMouseDown)
       window.removeEventListener("mouseup", handleMouseUp)
+      window.removeEventListener("keydown",handleKeyDown)
     }
   }, [handleWheel])
 
   ////
 
   return (
-    <div className="w-screen flex h-dvh max-lg:flex-col max-lg:h-screen">
+    <div className="w-screen flex h-dvh max-lg:flex-col max-lg:h-screen sm:h-[100vh]">
       {!surveyStarted ? (
         <div className="flex items-center justify-center max-lg:w-full w-1/2 max-h-dvh lg:h-full max-md:h-2/6 h-2/6 bg-white">
           <motion.img
@@ -107,7 +115,7 @@ function App() {
           SurveyData[page].image
             ? "lg:w-1/2 sm:px-20"
             : "lg:w-full md:px-32 h-full max-lg:h-full"
-        }max-h-screen w-full justify-start   flex items-center max-md:h-[100%] max-lg:p-7  max-lg:py-10  px-10`}
+        }max-h-screen w-full justify-start   flex items-center max-md:h-[100%] max-lg:p-7 max-sm:h-[70vh]  max-lg:py-10  px-10`}
       >
         {surveyStarted ? (
           <Questions
