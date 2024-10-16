@@ -108,7 +108,7 @@ const Questions = ({
         // Check the result and handle success
         // const data = await result.data
         alert("Form submitted successfully")
-        console.log("form details:",userData)
+        // console.log("form details:",userData)
         setPage(0) // Reset to the first page after submission
         setUserData({
           name: "",
@@ -129,7 +129,7 @@ const Questions = ({
           city: "",
           reference: "",
         })
-        // window.location.reload()
+        window.location.reload()
       }
 
       return
