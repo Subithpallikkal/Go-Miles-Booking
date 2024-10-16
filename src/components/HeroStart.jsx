@@ -31,7 +31,9 @@ const HeroStart = ({ surveyStarted, setSurveyStarted }) => {
       </p>
       <div className="flex flex-col max-md:mt-auto max-md:flex-col-reverse">
         <button
-          onClick={() => setSurveyStarted(true)}
+          onClick={() => {
+            setSurveyStarted(true)}
+          }
           className="bg-theme w-fit py-3 px-7 rounded-full text-white text-xl font-extrabold align-middle max-sm:w-full"
         >
           Start

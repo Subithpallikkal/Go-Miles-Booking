@@ -34,31 +34,30 @@ const Questions = ({
   const [isLoading,setIsLoading] = useState(false)
 
   const submitHandler = async (e) => {
-    e.preventDefault();
     const emptyFields = [] // Array to track fields that are empty or invalid
     
-
-
-
+    
+    
+    
     // Validate each required field
     if (isInput) {
       if (!userData[question.name]) {
         emptyFields.push(question.name) // Add the question name to emptyFields if input is empty
       }
     }
-
+    
     if (isDate) {
       if (!userData[question.name]) {
         emptyFields.push(question.name) // Check if the date field is filled
       }
     }
-
+    
     if (options?.length > 0) {
       if (!selectedOptions[question.name]) {
         emptyFields.push(question.name) // Check if an option is selected
       }
     }
-
+    
     // Email and Phone validation using regex
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/ // Basic email regex
     const phoneRegex = /^[0-9]{6,15}$/ // Simple phone number regex (10 digits)
@@ -70,19 +69,20 @@ const Questions = ({
     if (userData.number && !phoneRegex.test(userData.number)) {
       emptyFields.push("number") // Push to emptyFields if phone number is invalid
     }
-
+    
     // If there are any empty fields or validation errors, show error messages and stop the submission
     if (emptyFields.length > 0) {
       setError(true) // Set error state to true
       setErrorFields(emptyFields) // Update the errorFields state with the list of empty fields
-
+      
       return // Stop the function here, preventing page change
     } else {
       setError(false) // No errors, proceed with the form submission
     }
-
+    
     // Handle form submission
     if (isSubmit) {
+      e.preventDefault();
       setIsLoading(true)
       const formData = new FormData()
 
@@ -108,7 +108,7 @@ const Questions = ({
         // Check the result and handle success
         // const data = await result.data
         alert("Form submitted successfully")
-        // console.log("form details:",userData)
+        console.log("form details:",userData)
         setPage(0) // Reset to the first page after submission
         setUserData({
           name: "",
@@ -129,7 +129,7 @@ const Questions = ({
           city: "",
           reference: "",
         })
-        window.location.reload()
+        // window.location.reload()
       }
 
       return
