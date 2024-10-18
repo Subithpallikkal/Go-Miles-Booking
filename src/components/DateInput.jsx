@@ -44,6 +44,7 @@ const DateInput = ({ question }) => {
         className="border-b text-lg border-gray-400 w-40 text-center text-gray-400 focus:outline-none"
         placeholderText="DD / MM / YYYY"
         showPopperArrow={false}
+        popperClassName="custom-datepicker-popper"
       />
     </div>
 
