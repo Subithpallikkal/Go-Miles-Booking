@@ -1,5 +1,17 @@
 // export default Options
 const Options = ({ options, question, selectedOptions, onOptionChange }) => {
+
+  const selectedDestination = selectedOptions["destination"];
+
+  const availableOptions = options.filter(option => {
+    if (!question.dependsOn) return true;
+    if (selectedDestination !== "Turkey") {
+      return option.option === "Private tour";
+    }
+    return true;
+  });
+
+  
   return (
     <div
       onWheel={(event) => event.stopPropagation()}
@@ -26,7 +38,7 @@ const Options = ({ options, question, selectedOptions, onOptionChange }) => {
               <div className="aspect-square object-cover object-center aspect-w-1 w-full overflow-hidden bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
                 <img
                   src={option.image}
-                  alt="Option image"
+                  alt={option.name}
                   className="h-full w-full object-cover object-center group-hover:opacity-75 rounded-t"
                 />
               </div>
