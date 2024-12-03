@@ -7,10 +7,12 @@ import colorLogo from "./assets/logos/logo-name-color.png"
 import { motion, useAnimation } from "framer-motion"
 
 function App() {
+  const deployURL = import.meta.env.VITE_API_URL
+
   const formData = {
     name: "",
     planningDate: "",
-    planingDayCount: 0,
+    dayNightCount: "",
     joiners: "",
     joinersCount: 0,
     tourType: "",
@@ -29,60 +31,60 @@ function App() {
   const [userData, setUserData] = useState(formData)
 
   // Throttled scroll event
-  const handleWheel = useCallback(
-    (event) => {
-      if (scrollEnabled && !isThrottled) {
-        if (event.deltaY > 0) {
-          // Scrolling down, move to the next page
-          setPage((prevPage) =>
-            prevPage < SurveyData.length - 1 ? prevPage + 1 : prevPage
-          )
-        } else if (event.deltaY < 0) {
-          // Scrolling up, move to the previous page
-          setPage((prevPage) => (prevPage > 0 ? prevPage - 1 : prevPage))
-        }
+  // const handleWheel = useCallback(
+  //   (event) => {
+  //     if (scrollEnabled && !isThrottled) {
+  //       if (event.deltaY > 0) {
+  //         // Scrolling down, move to the next page
+  //         setPage((prevPage) =>
+  //           prevPage < SurveyData.length - 1 ? prevPage + 1 : prevPage
+  //         )
+  //       } else if (event.deltaY < 0) {
+  //         // Scrolling up, move to the previous page
+  //         setPage((prevPage) => (prevPage > 0 ? prevPage - 1 : prevPage))
+  //       }
 
-        // Throttle for a short duration
-        setIsThrottled(true)
-        setTimeout(() => {
-          setIsThrottled(false)
-        }, 1500) // 800ms delay between scroll events
-      }
-    },
-    [isThrottled, scrollEnabled]
-  )
+  //       // Throttle for a short duration
+  //       setIsThrottled(true)
+  //       setTimeout(() => {
+  //         setIsThrottled(false)
+  //       }, 1500) // 800ms delay between scroll events
+  //     }
+  //   },
+  //   [isThrottled, scrollEnabled]
+  // )
 
-  const handleMouseDown = () => {
-    // Disable scroll when mouse is pressed
-    setScrollEnabled(false)
-  }
+  // const handleMouseDown = () => {
+  //   // Disable scroll when mouse is pressed
+  //   setScrollEnabled(false)
+  // }
 
-  const handleMouseUp = () => {
-    // Enable scroll when mouse is released
-    setScrollEnabled(true)
-  }
+  // const handleMouseUp = () => {
+  //   // Enable scroll when mouse is released
+  //   setScrollEnabled(true)
+  // }
 
-  const handleKeyDown =(event)=>{
-    if(event.key === "Enter"){
-        setSurveyStarted(true)
-    }
-  }
+  // const handleKeyDown = (event) => {
+  //   if (event.key === "Enter") {
+  //     setSurveyStarted(true)
+  //   }
+  // }
 
-  useEffect(() => {
-    // Add wheel and mouse event listeners
-    window.addEventListener("wheel", handleWheel, { passive: false })
-    window.addEventListener("mousedown", handleMouseDown)
-    window.addEventListener("mouseup", handleMouseUp)
-    window.addEventListener("keydown",handleKeyDown)
+  // useEffect(() => {
+  //   // Add wheel and mouse event listeners
+  //   window.addEventListener("wheel", handleWheel, { passive: false })
+  //   window.addEventListener("mousedown", handleMouseDown)
+  //   window.addEventListener("mouseup", handleMouseUp)
+  //   window.addEventListener("keydown", handleKeyDown)
 
-    // Cleanup listeners on component unmount
-    return () => {
-      window.removeEventListener("wheel", handleWheel)
-      window.removeEventListener("mousedown", handleMouseDown)
-      window.removeEventListener("mouseup", handleMouseUp)
-      window.removeEventListener("keydown",handleKeyDown)
-    }
-  }, [handleWheel])
+  //   // Cleanup listeners on component unmount
+  //   return () => {
+  //     window.removeEventListener("wheel", handleWheel)
+  //     window.removeEventListener("mousedown", handleMouseDown)
+  //     window.removeEventListener("mouseup", handleMouseUp)
+  //     window.removeEventListener("keydown", handleKeyDown)
+  //   }
+  // }, [handleWheel])
 
   ////
 

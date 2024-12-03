@@ -1,17 +1,15 @@
 // export default Options
 const Options = ({ options, question, selectedOptions, onOptionChange }) => {
+  const selectedDestination = selectedOptions["destination"]
 
-  const selectedDestination = selectedOptions["destination"];
-
-  const availableOptions = options.filter(option => {
-    if (!question.dependsOn) return true;
+  const availableOptions = options.filter((option) => {
+    if (!question.dependsOn) return true
     if (selectedDestination !== "Turkey") {
-      return option.option === "Private tour";
+      return option.option === "Private tour"
     }
-    return true;
-  });
+    return true
+  })
 
-  
   return (
     <div
       onWheel={(event) => event.stopPropagation()}
@@ -27,7 +25,7 @@ const Options = ({ options, question, selectedOptions, onOptionChange }) => {
           return (
             <div
               key={i}
-              className={`group aspect-square shadow-neou rounded-md ${
+              className={`group aspect-square shadow-neou rounded-md cursor-pointer ${
                 isSelected ? "border-2 border-orange" : ""
               }`} // Highlight selected option
               onClick={() => {

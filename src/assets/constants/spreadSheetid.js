@@ -1,4 +1,4 @@
-const spreadSheetId = "1aBViApviKFAt6kG-l5JGg21LotOJ7Geu704tbwRqWXc"
+const spreadSheetId = ""
 
 //fill your spread sheet id between the "" in the above line
 

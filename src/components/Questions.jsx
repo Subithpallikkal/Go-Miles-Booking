@@ -7,7 +7,6 @@ import Options from "./Options"
 import { useUserData } from "../context/userDataContext"
 import AdminPhone from "../assets/constants/AdminPhone"
 import axios from "axios"
-import spreadSheetId from "../assets/constants/spreadSheetid"
 import { ClipLoader } from "react-spinners"
 
 const Questions = ({
@@ -21,8 +20,8 @@ const Questions = ({
     selectOnlyOne,
     image,
     isSubmit,
-    getOptions, // Add this prop
-    dependsOn, // Add this prop
+    getOptions,
+    dependsOn,
   },
   question,
   page,
@@ -35,57 +34,63 @@ const Questions = ({
   const [selectedOptions, setSelectedOptions] = useState({})
   const [isLoading, setIsLoading] = useState(false)
 
+  // State for counting members
+  const [adultCount, setAdultCount] = useState(0) // State for adult count
+  const [childCount, setChildCount] = useState(0) // State for child count
+  const [childAges, setChildAges] = useState([]) // State for children's ages
+
   // Function to get the correct options based on dependencies
   const getCurrentOptions = () => {
     if (question.name === "wishlist" && getOptions) {
-      return getOptions(userData.destination);
+      return getOptions(userData.destination)
     }
-    return options;
-  };
+    return options
+  }
 
   // Skip tour type for Georgia and Azerbaijan
   const shouldSkipQuestion = () => {
     if (
-      question.name === "tourType" && 
-      (userData.destination === "Georgia" || userData.destination === "Azerbaijan")
+      question.name === "tourType" &&
+      (userData.destination === "Georgia" ||
+        userData.destination === "Azerbaijan")
     ) {
-      return true;
+      return true
     }
-    return false;
-  };
+    return false
+  }
 
   useEffect(() => {
     if (shouldSkipQuestion()) {
-      setPage(page + 1);
+      setPage(page + 1)
     }
-  }, [page, userData.destination]);
+  }, [page, userData.destination])
 
   const submitHandler = async (e) => {
     if (shouldSkipQuestion()) {
-      setPage(page + 1);
-      return;
+      setPage(page + 1)
+      return
     }
 
     const emptyFields = []
-    
+
     if (isInput) {
-      if (!userData[question.name]) {
+      if (!userData[question.name] || userData[question.name].trim() === "") {
         emptyFields.push(question.name)
       }
     }
-    
+
     if (isDate) {
       if (!userData[question.name]) {
         emptyFields.push(question.name)
       }
     }
-    
+
     if (getCurrentOptions()?.length > 0) {
       if (!selectedOptions[question.name]) {
         emptyFields.push(question.name)
       }
     }
-    
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     const phoneRegex = /^[0-9]{6,15}$/
 
@@ -96,7 +101,7 @@ const Questions = ({
     if (userData.number && !phoneRegex.test(userData.number)) {
       emptyFields.push("number")
     }
-    
+
     if (emptyFields.length > 0) {
       setError(true)
       setErrorFields(emptyFields)
@@ -104,31 +109,62 @@ const Questions = ({
     } else {
       setError(false)
     }
-    
+
     if (isSubmit) {
-      e.preventDefault();
       setIsLoading(true)
       const formData = new FormData()
+      console.log("user Data", userData)
 
       for (const key in userData) {
-        formData.append(key, userData[key])
+        if (key === "date") {
+          formData.append(key, userData[key].date)
+          formData.append(
+            "dayNightCount",
+            `${userData[key].days || "N/A"} days, ${
+              userData[key].nights || "N/A"
+            } nights`
+          )
+        } else {
+          formData.append(key, userData[key])
+        }
       }
+      console.log(adultCount, childAges.toString(), childCount)
+
+      // Add adult and child counts to formData
+      const childAgesString = childAges.map((n) => `(${n})`)
+      console.log(
+        `${adultCount} adults`,
+        `${childCount} childs, ${childAgesString}`
+      )
+
+      formData.append("adultCount", `${adultCount} adults`)
+      formData.append(
+        "childCount",
+        `${childCount} childs, ${childAgesString.toString()}`
+      )
+      // childAges.forEach((age, index) => {
+      //   formData.append(`childAge_${index}`, age)
+      // })
 
       formData.append("enquiryDate", new Date().toLocaleDateString("en-GB"))
-      formData.append("spreadSheetId", { spreadSheetId })
+      formData.append("spreadSheetId", import.meta.env.VITE_API_SHEETID)
 
       try {
-        // const result = await axios.post(
-        //   "https://script.google.com/macros/s/AKfycbzCjmIl7d_WPPdzxHnzYfWkamq1wYEnBNGJElDlzmak8bQexsrkDEb6zMp-k0MxykXE/exec",
-        //   formData
-        // )
-        alert("Form submitted successfully")
-        console.log("form details:",userData)
+        const result = await axios.post(
+          `${import.meta.env.VITE_API_URL}`,
+          formData
+        )
         setPage(0)
         setUserData({
+          ...userData,
+          members: {
+            adultCount: adultCount,
+            childCount: childCount,
+            childAges: childAges,
+          },
           name: "",
           date: "",
-          // dayCount: "",
+          dayNightCount: "",
           companion: "",
           teamCount: "",
           tourType: "",
@@ -144,10 +180,11 @@ const Questions = ({
           city: "",
           reference: "",
         })
-        window.location.reload()
       } catch (error) {
-        // console.log("Error:", error.message)
+        console.log("Error:", error.message)
       } finally {
+        alert("Form submitted successfully")
+        // window.location.reload()
         setIsLoading(false)
       }
       return
@@ -210,13 +247,23 @@ const Questions = ({
     })
   }
 
+  const handleAddChildAge = () => {
+    setChildAges((prev) => [...prev, ""]) // Add an empty string for a new age input
+  }
+
+  const handleChildAgeChange = (index, value) => {
+    const updatedAges = [...childAges]
+    updatedAges[index] = value // Update the specific child's age
+    setChildAges(updatedAges)
+  }
+
   if (shouldSkipQuestion()) {
-    return null;
+    return null
   }
 
   // Don't render dependent questions if dependency isn't met
   if (dependsOn && !userData[dependsOn]) {
-    return null;
+    return null
   }
 
   return (
@@ -231,7 +278,7 @@ const Questions = ({
         } flex-col`}
       >
         <h1 className="font-carmenBold md:text-2xl text-xl text-theme">
-          {typeof title === 'function' ? title(userData) : title}
+          {typeof title === "function" ? title(userData) : title}
         </h1>
 
         {logo && (
@@ -245,6 +292,51 @@ const Questions = ({
             <InputField question={question} />
             {error && errorFields.includes(question.name) && (
               <div className="text-red-400">This field is required</div>
+            )}
+          </div>
+        )}
+
+        {question.name === "members" && (
+          <div>
+            <h2>{title}</h2>
+            <div>
+              <label>Number of Adults:</label>
+              <input
+                type="number"
+                value={adultCount}
+                onChange={(e) => setAdultCount(e.target.value)}
+                min="0"
+                className="border-2 ml-8 mb-5 mt-8 p-2 rounded-lg"
+              />
+            </div>
+            <div>
+              <label>Number of Children:</label>
+              <input
+                type="number"
+                value={childCount}
+                onChange={(e) => setChildCount(e.target.value)}
+                min="0"
+                className="border-2 ml-8 mb-5 mt-8 p-2 rounded-lg"
+              />
+            </div>
+            {childCount > 0 && (
+              <div>
+                <h3>Children's Ages:</h3>
+                {Array.from({ length: childCount }).map((_, index) => (
+                  <div key={index}>
+                    <input
+                      type="number"
+                      placeholder="Child Age"
+                      value={childAges[index] || ""}
+                      onChange={(e) =>
+                        handleChildAgeChange(index, e.target.value)
+                      }
+                      className="border-2 ml-8 mb-5 mt-8 p-2 rounded-lg"
+                    />
+                  </div>
+                ))}
+                {/* <button onClick={handleAddChildAge}>Add Child Age</button> */}
+              </div>
             )}
           </div>
         )}
@@ -287,7 +379,7 @@ const Questions = ({
           disabled={isLoading}
         >
           {question.name === "reference" && isLoading ? (
-            <ClipLoader color="#fff" size={20}/>
+            <ClipLoader color="#fff" size={20} />
           ) : (
             buttonText
           )}
